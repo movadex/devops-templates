@@ -4,22 +4,21 @@ env:
     ENVIRONMENT: main
     AWS_REGION: us-west-1
     DOCKER_IMAGE_NAME:  # docker image name in ECR
-    ECR_REGISTRY: url # ECR URL
+    ECR_REGISTRY: # ECR URL
     S3_BUCKET: # bucket for build version
     EB_APPLICATION_NAME: # eb app name
     EB_ENVIRONMENT_NAME: # eb env name
     EB_CONFIGS_FOLDER: # folder in project for aws eb artifacts/nginx configs/etc
     DOCKERFILE: Dockerfile
+# also need secrets.AWS_ACCESS_KEY_ID, secrets.AWS_SECRET_ACCESS_KEY
 
-
-on:
-    workflow_dispatch: # for production, no automated deploys
-        # or
-on:
+on: # trigger for pipeline
   push: # for dev, auto deploy on push
     branches:
       - dev
-      -
+  # or
+  workflow_dispatch: # for production, no automated deploys
+
 
 jobs:
     build:
